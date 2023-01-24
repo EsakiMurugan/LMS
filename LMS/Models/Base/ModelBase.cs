@@ -5,19 +5,20 @@ namespace LMS.Models.Base
 {
     public class ModelBase : IModelBase
     {
+        public int Id { get ; set; }
         public DateTimeOffset CreatedOn { get; set; }
 
         [Required]
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
         [ForeignKey(nameof(CreatedBy))]
+        public virtual UserMaster? CreatedByUser { get; set; }
 
-        public virtual UserMaster CreatedByUser { get; set; }   
         public DateTimeOffset UpdatedOn { get; set; }
 
         [Required]  
-        public int UpdatedBy { get; set ; }
-        [ForeignKey("UpdatedBy")]
-
-        public virtual UserMaster UpdatedByUser { get; set; }   
+        public int? UpdatedBy { get; set ; }
+        [ForeignKey(nameof(UpdatedBy))]
+        public virtual UserMaster? UpdatedByUser { get; set; }
+       
     }
 }
